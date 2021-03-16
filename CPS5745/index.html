@@ -1,0 +1,464 @@
+<html>
+     <head>
+          <title>CPS5745 Data Vis Projects  Home Page</title>
+
+          <link rel='stylesheet' href='css/graph.css' />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+		  <script src="https://www.gstatic.com/charts/loader.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" integrity="sha512-rKFvwjvE4liWPlFnvH4ZhRDfNZ9FOpdkD/BU5gAIA3VS3vOQrQ5BjKgbO3kxebKhHdHcNUHLqxQYSoxee9UwgA==" crossorigin="anonymous"></script>
+
+	      <script src="https://d3js.org/d3.v4.min.js"></script>
+		  <script src="https://naver.github.io/billboard.js/release/latest/dist/billboard.min.js"></script>
+
+		  <script src="js/globals.js"></script>
+		  <script src="js/jscookie.js"></script>
+		  <script src="js/util.js"></script>
+		  <script src="js/sliders.js"></script>
+		  <script src="js/form.js"></script>
+		  <script src="js/gchart-event-callbacks.js"></script>
+		  <script src="js/gcharts.js"></script>
+		  <script src="js/messages.js"></script>
+		  <script src="js/csv_custom.js"></script>
+		  <script src="js/modals.js"></script>
+		  <script src="js/event-callbacks.js"></script>
+		  <script src="js/main.js"></script>
+
+		  <link rel='stylesheet' href='https://naver.github.io/billboard.js/release/latest/dist/billboard.css' />
+
+     </head>
+     <body>
+
+     	  <div class="container-fluid mb-2">
+
+	          <div class="row">
+	          	<div class="col-md-12" style="max-height:250px; overflow:auto;" id="MessageArea">
+
+	          	</div>
+
+	          </div>
+
+	          <div class="row">
+	          	<div class="col-md-12">
+					<ul class="nav nav-tabs">
+
+					  <li class="nav-item">
+					    <a class="nav-link active" href="#!">Home</a>
+					  </li>
+
+					  <li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					       href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					       File</a>
+					    <div class="dropdown-menu">
+					      <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#load_csv_file_modal">Load CSV File</a>
+					      <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#login_to_db">Login to DB</a>
+					      <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#logout_from_db">Logout DB</a>
+					      <a class="dropdown-item" href="#!" id="LoadDBData1">Load DB Data1</a>
+					      <a class="dropdown-item" href="#!" id="LoadDBData2">Load DB Data2</a>
+					      <a class="dropdown-item" href="#!" data-toggle="modal" data-target="#exit">Exit</a>
+					    </div>
+					  </li>
+
+  					  <li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					       href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					       View</a>
+					    <div class="dropdown-menu">
+					      <a class="dropdown-item" id="Line"href="#!">Line</a>
+					      <a class="dropdown-item" id="Pie" href="#!">Pie</a>
+					      <a class="dropdown-item" id="Bar" href="#!">Bar</a>
+					      <a class="dropdown-item" id="Map" href="#!">Map</a>
+					      <a class="dropdown-item" id="NewCharts" href="#!">New Charts</a>
+					      <a class="dropdown-item" id="Analytics" href="#!">Analytics</a>
+					    </div>
+					  </li>
+
+					  <li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					       href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					       Settings</a>
+					    <div class="dropdown-menu">
+					      <a class="dropdown-item" href="#!" id="UserInfo">User Info</a>
+					      <a class="dropdown-item" href="#!" id="SendEmailMenuOption">Email Settings</a>
+					    </div>
+					  </li>
+
+					  <li class="nav-item dropdown">
+					    <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+					       href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					       Help</a>
+					    <div class="dropdown-menu">
+					      <a class="dropdown-item" href="#!" id="Info">Info</a>
+					      <a class="dropdown-item" href="#!" id="Client">Client</a>
+					    </div>
+					  </li>
+
+					</ul>
+	          	</div>
+
+
+	          	<!-- Email Modal -->
+				<div class="modal" id="EmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Send Email</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	
+				      	<!-- To: -->
+						<div class="input-group pb-2">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" style="width:75px;" >To</span>
+						  </div>
+						  <input type="text" class="form-control" id="SendEmailTo" placeholder="xxxxx@xxxx.xxx">
+						</div>
+
+						<!-- Subject: -->
+						<div class="input-group pb-2">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" style="width:75px;">Subject</span>
+						  </div>
+						  <input type="text" class="form-control" id="SendEmailSubject" placeholder="xxxx's DV preferences" readonly>
+						</div>
+
+						<!-- content -->
+					    <div class="form-group">
+					    	<label for="exampleFormControlTextarea1">Content</label>
+					    	<textarea class="form-control" id="SendEmailContent" rows="5" readonly>Content...</textarea>
+					    </div>
+
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				        <button type="button" class="btn btn-primary" id="SendEmailButton" data-dismiss="modal">Send</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+	          	<!-- Views check for loaded data -->	          	
+	          	<!-- MODAL -->
+				<div class="modal" id="ClientModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Client</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+
+			      		<h3>Client Info</h3>
+				      	<table id="Client-js">
+
+				      	</table>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+				<div class="modal" id="InfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Info</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+
+			      		<h3>Student Info</h3>
+				      	<table>
+				      		<tr><th>name:</th><td>Robert Kulesza</td></tr>
+				      		<tr><th>class ID:</th><td>CPS5745</td></tr>
+				      		<tr><th>project due:</th><td>10-05-2020</td></tr>
+				      	</table>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+
+				<div class="modal" id="UserInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">User Info</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<table id="UserInfo-js">
+				      		
+				      	</table>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal" id="SimpleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel"><span id='SimpleModalTitle'></span></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<table id="SimpleModal-js">
+				      		
+				      	</table>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+				<div class="modal" id="DataNotLoaded" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Please load data first</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	There is no data loaded!
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+				<div class="modal" id="UnsupportedGraphType" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Unsupported Graph Type</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	The Data Selection option currently selected does not support this graph type.
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+	          	<!-- Logout from DB -->
+	          	<!-- MODAL -->
+				<div class="modal" id="exit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Exit</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	Are you sure you want to exit?
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+				        <button type="button" id="exit_button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+	          	<!-- Logout from DB -->
+	          	<!-- MODAL -->
+				<div class="modal" id="logout_from_db" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Logout From DB</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	Are you sure you want to logout?
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+				        <button type="button" class="btn btn-primary" id="logout_from_db_button" data-dismiss="modal">Yes</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+
+	          	<!-- Login to DB -->
+	          	<!-- MODAL -->
+				<div class="modal" id="login_to_db" tabindex="-1" role="dialog" aria-labelledby="login_to_db" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Login to DB</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+					      <div class="modal-body">
+					      	<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Username</span>
+									</div>
+									<input type='text' name='username' id='db_username' class='form-control' required/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">Password</span>
+									</div>
+									<input type='password' name='password' id='db_password' class='form-control' required/>
+								</div>
+							</div>
+					      </div>
+
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					        <button type="button" id="login_to_db_submit" class="btn btn-primary" name="login_to_db_submit" data-dismiss="modal">Submit</button>
+					      </div>
+
+
+				    </div>
+				  </div>
+				</div>
+
+	          	<!-- Load CSV File -->
+	          	<!-- Modal -->
+				<div class="modal" id="load_csv_file_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Load CSV File</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+						<form id="uploadFileForm" class="form-inline">
+						  <label class="sr-only" for="inlineFormInputName2">Choose File</label>
+						  <input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+
+						  <button type="button" name="load_csv_file" id="uploadFileButton" class="btn btn-primary mb-2" data-dismiss="modal" >Submit</button>
+						</form>
+
+
+				      </div>
+				      <!-- <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+				      </div> -->
+				    </div>
+				  </div>
+				</div>
+	          </div>
+
+	          <div class="row border border-dark">
+	          	<div class="col-md-3 border border-dark border-left-0 border-top-0 border-bottom-0">
+
+	          		<div class='row pb-4'>
+	          			<div class='col-md-12 '>
+		          			<h3>Data Selection</h3>
+			          		<p>Please select one of the following choice, and then run one of the graph in the View menu:</p>
+			          		<p> <strong>Note:</strong> The empty, NULL or NaN value will be excluded</p>
+
+			          		<div class="custom-control custom-radio">
+							  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="AW">
+							  <label class="custom-control-label" for="customRadio1"><strong>AvgWages</strong> (Bar, Line)</label>
+							</div>
+							<div class="custom-control custom-radio">
+							  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="EP">
+							  <label class="custom-control-label" for="customRadio2"><strong>EstimatedPopulation</strong> (Bar, Line)</label>
+							</div>
+							<div class="custom-control custom-radio">
+							  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="S">
+							  <label class="custom-control-label" for="customRadio3"><strong>State</strong> (Bar, Pie)</label>
+							</div>
+	          			</div>
+	          		</div>
+
+	          		<div class='row pb-4'>
+	          			<div class='col-md-12'>
+	          				<h3> Sliders </h3>
+	          				<div class="form-group">
+		          				<label for="AvgWagesSlider">AvgWages</label>
+		          				<input type="range" class="custom-range" id="AvgWagesSlider" />
+		          			</div>
+
+		          			<div class='form-group'>
+	          					<label for="EstPopSlider">Est. Pop.</label>
+	          					<input type="range" class="custom-range" id="EstPopSlider" />
+	          				</div>
+	          			</div>
+	          		</div>
+
+	          		<div class='row pb-4'>
+	          			<div class='col-md-12' style='text-align:center;'>
+							
+
+							<button type='button' class='btn btn-primary disabled' id='SaveFilteredResults'>Save Filtered Results</button>
+							<button type='button' class='btn btn-primary disabled' id='SaveSettings'>Save Settings</button>
+
+	          			</div>
+	          		</div>
+
+	          	</div>
+	          	<div class="col-md-9 " id="TableArea">
+
+				    <h3>Data Table</h3>
+				    <div id="table_div"></div>
+
+	          	</div>
+	          </div>
+
+	          <div class="row border border-dark">
+	          	<div class="col-md-6 ">
+	          		<h3>Graph 1</h3>
+	          		<div id='graph1' ></div>
+	          	</div>
+
+	          	<div class="col-md-6 ">
+	          		<h3>Graph 2</h3>
+	          		<div id='graph2' ></div>
+	          		<div id='graph3' ></div>
+	          	</div>
+	          </div>
+
+	          	<div class="row border border-dark ">
+	          		<div class="col-md-12 " id="info-section">
+	          			<h3> Information </h3>
+	          			<div id='graph4' ></div>
+	          		</div>
+		        </div>
+
+          </div>
+     </body>
+     <footer>
+     </footer>
+</html>

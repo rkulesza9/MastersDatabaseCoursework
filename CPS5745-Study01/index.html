@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>CPS5745 Study 1: 5 Cities (MAPS)</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
+		<script src="js/GetFmtData.js"></script>
+
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="jumbotron">
+					  <h1 class="display-3">5 City Population & Housing Costs</h1>
+					  <p class="lead">CPS5745 Study 1</p>
+					  <hr class="my-2">
+					  <p>
+						The following Google Map shows population, median home value, average market monthly rent, and Homeownership Rate for 5 cities in NJ including Newark, Jersey City, Paterson, Elizabeth, and Clifton.
+						<div id='cities_table'>
+						</div>
+					  </p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+				    <div id="cities_map" class="my-4 map"></div>
+
+				    <script>
+				    	GetFmtData.requestCityData(GetFmtData.fx_table);
+
+						google.charts.load("current", {
+					        "packages":["map"],
+					        "mapsApiKey": "AIzaSyBy2RSPNACOHZZh54r-MZas4XeRglKf_IA"
+					    });
+
+					    google.charts.setOnLoadCallback(function(){
+					    	GetFmtData.requestCityData(GetFmtData.fx_map);
+					    });
+				    </script>
+				</div>
+			</div>
+		</div>
+	</body>
+	<footer>
+	</footer>
+</html>

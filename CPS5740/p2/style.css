@@ -1,0 +1,9 @@
+.bb1s {
+  border: black 1px solid;
+}
+.warning {
+  color: red;
+}
+.success {
+  color: green;
+}

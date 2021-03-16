@@ -1,0 +1,25 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#vis {
+  position: relative;
+    width: 960px;
+  height: 700px;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+path {
+  stroke: #FFF;
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.tooltip,
+.textHoverShapes {
+  pointer-events: none
+}

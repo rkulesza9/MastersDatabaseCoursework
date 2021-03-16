@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title> CPS5745 Study 2 </title>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		<style>
+			body {
+			  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+			#vis {
+			  position: relative;
+			    width: 960px;
+			  height: 700px;
+			}
+
+			form {
+			  position: absolute;
+			  right: 10px;
+			  top: 10px;
+			}
+
+			path {
+			  stroke: #FFF;
+			  stroke-width: 1;
+			  cursor: pointer;
+			}
+
+			.tooltip,
+			.textHoverShapes {
+			  pointer-events: none
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+		  <label><input type="radio" name="mode" value="count" checked> Count</label>
+		</form>
+		<div id="vis" >
+
+
+		<script src="js/main.js"></script>
+	</body>
+	<footer>
+	</footer>	
+</html>

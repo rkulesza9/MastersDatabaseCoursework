@@ -1,0 +1,10 @@
+ASSIGNMENT STATUS
+
+DONE
+
+*** setup cookie this way:
+
+"user_id: "
+"user_role: " (M,E,C)
+
+*** check if sql worked whenever stmt->execute()
